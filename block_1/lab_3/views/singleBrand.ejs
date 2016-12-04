@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Logo</title>
+  <meta charset="utf-8">
+ <link rel="shortcut icon" type="image/x-icon" href="/stylesheets/img/fav.png">
+ <link rel ="stylesheet" href="/stylesheets/stylePage.css" media="all">
+</head>
+<body>
+
+   <div class = "header">
+      <div class = "mid">
+        <header>
+          <div class ="topmenu">
+            <aside>
+              <a href = "/">Головна</a>
+              <a href = "/brands">Бренди</a>
+            </aside>
+          </div>
+          <img src="/stylesheets/img/up.png" alt = "Logo" title = "Logo">
+        </header>
+      </div>
+   </div>
+
+   <div class = "content">
+        <div class = "mid">
+           <div class = "block">
+              <div class = "anons">
+                  <section>
+                    <div class = "image">
+                     <a href = "#"><img src="<%= img_path %>" alt = "<%= name %>"></a>
+                    </div>
+                    <a href = "#"><h3><%= name %></h3></a>
+                  </section>
+              </div>
+           </div>
+           <div class = "block">
+              <div class = "anons">
+              <style type="text/css">
+              table {
+              border-color: white;
+              border: 6px:
+              border-collapse: collapse;
+              width: 100%;
+              }
+
+th, td {
+text-align: left;
+padding: 8px;
+}
+
+tr:nth-child(even){background-color: #C0C0C0}
+
+th {
+background-color: #696969;
+color: white;
+}
+
+
+
+              </style>
+                  <table>
+                	<tr>
+                		<th>Name</th>
+                		<td><%= page_title %></td>
+                	</tr>
+                	<tr>
+                    <th>Founder</th>
+                		<td><%=founder%></td>
+                	</tr>
+                	<tr>
+                    <th>Date</th>
+                		<td><%=date%></td>
+                	</tr>
+                  <tr>
+                    <th>Staf (millions)</th>
+                		<td><%=staf%></td>
+                	</tr>
+                  <tr>
+                    <th>Cost (billions)</th>
+                		<td><%=cost%></td>
+                	</tr>
+                </table>
+
+            </div>
+           </div>
+
+
+        </div>
+    </div>
+
+
+  <div class = "footer">
+    <div class = "mid">
+      </div>
+   </div>
+</body>
+
+
+
+
+
+
+</html>

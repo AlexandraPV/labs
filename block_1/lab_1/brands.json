@@ -1,0 +1,141 @@
+[
+       {
+
+		"name": "Apple",
+
+		"founder": "Steve Jobs",
+
+		"date": "1976-04-01",
+
+		"staf": 115,
+
+		"cost": 154.1
+
+	},
+
+	
+       {
+
+		"name": "Microsoft",
+
+		"founder": "Bill Gates",
+
+		"date": "1975-04-04",
+
+		"staf": 127,
+
+		"cost": 75.2
+
+	},
+
+	 {
+
+		"name": "Google",
+
+		"founder": "Larry Page",
+
+		"date": "1998-09-04",
+
+		"staf": 57,
+
+		"cost": 82.5
+
+	},
+
+       {
+
+		"name": "Coca-Cola",
+
+		"founder": "John Pemberton",
+
+		"date": "1886-05-08",
+
+		"staf": 143,
+
+		"cost": 58.5
+
+	},
+ 
+{
+
+		"name": "Facebook",
+
+		"founder": "Mark Zuckerberg",
+
+		"date": "2004-02-04",
+
+		"staf": 14,
+
+		"cost": 52.6
+
+	},
+
+ {
+
+		"name": "Samsung",
+
+		"founder": "Lee Byung-chul",
+
+		"date": "1938–03-01",
+
+		"staf": 489,
+
+		"cost": 36.1
+
+	},
+ {
+
+		"name": "Toyota",
+
+		"founder": "Kiichiro Toyoda",
+
+		"date": "1937-08-28",
+
+		"staf": 346,
+
+		"cost": 42.1
+
+	},
+
+{
+
+		"name": "IBM",
+
+		"founder": "Charles Flint",
+
+		"date": "1911-06-16",
+
+		"staf": 377,
+
+		"cost": 41.4
+
+	},
+
+{
+
+		"name": "Disney",
+
+		"founder": "Walt Disney",
+
+		"date": "1923–10-16",
+
+		"staf": 180,
+
+		"cost": 39.5
+
+	},
+
+{
+
+		"name": "McDonald’s",
+
+		"founder": "Richard and Maurice McDonald",
+
+		"date": "1940-05-15",
+
+		"staf": 420,
+
+		"cost": 39.1
+
+	}
+]

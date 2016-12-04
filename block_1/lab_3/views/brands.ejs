@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Logo</title>
+  <meta charset="utf-8">
+ <link rel="shortcut icon" type="image/x-icon" href="stylesheets/img/fav.png">
+ <link rel ="stylesheet" href="stylesheets/styleBrand.css" media="all">
+</head>
+<body>
+
+   <div class = "header">
+      <div class = "mid">
+        <header>
+          <div class ="topmenu">
+            <aside>
+              <a href = "/">Головна</a>
+              <a href = "/brands">Бренди</a>
+
+            </aside>
+          </div>
+          <img src="stylesheets/img/up.png" alt = "Logo" title = "Logo">
+        </header>
+      </div>
+   </div>
+
+   <div class = "content">
+        <div class = "mid">
+          <% for (var i = 0; i < arr.length; i++) {  %>
+
+           <div class = "block">
+              <div class = "anons">
+                  <section>
+                    <div class = "image">
+                     <a href = "<%= arr[i].href %>"><img src="<%= arr[i].img_path %>" alt = "<%= arr[i].title %>"></a>
+                    </div>
+                    <a href = "<%= arr[i].href %>"><h3><%= arr[i].title %></h3></a>
+                  </section>
+              </div>
+           </div>
+          <%}%>
+        </div>
+    </div>
+
+
+  <div class = "footer">
+    <div class = "mid">
+      </div>
+   </div>
+</body>
+
+
+</html>
