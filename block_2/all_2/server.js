@@ -64,29 +64,9 @@ app.get('/add', (req, res) => {
 		})
 	});
 
-	app.get('/search', (req, res) => {
-
-        var value = req.body.q;
-	console.log(value);
-	       db.collection('brands').find().skip(1).limit(7)
-	       .then(sales => {
-
-	         db.collection('brands').find({"name":value})
-	           .then(prods => {
-
-	           res.render('search', {
-	             prods: prods,
-	     				sales: sales,
-	             count: count
-
-	           });
-	         });
 
 
-	      				})
-	             .catch(err => res.status(500).end(err));
 
-	      });
 
 
 app.post('/deleteprod', (req, res) => {
@@ -134,7 +114,8 @@ app.post('/add', (req, res) => {
 	var avaFile1 = req.files.avatar1;
 
 	var hrefProd = req.body.name;
-
+var stafI = parseInt(staf);
+var costI = parseFloat(cost);
 	hrefProd = hrefProd.replace(/ /g, '').replace(/\//g, '');
 	hrefProd= hrefProd.toLowerCase();
 	var hrProd =( '/' + hrefProd);
@@ -148,13 +129,12 @@ app.post('/add', (req, res) => {
 				if (prod) res.status(200).end('prod exists');
 				else {
 
-
 					return db.collection('brands').insert({
 						name: name,
 						founder: founder,
 						date: date,
-						staf: staf,
-						cost: cost,
+						staf: stafI,
+						cost: costI,
 						avatar1: base64String1,
 
 						href: hrefProd
@@ -190,125 +170,6 @@ db.collection('brands').find().skip(4).limit(7)
 	});
 
 });
-
-
-
-////////////////////////////////////////////////////////////////////
-///////////////////////JSON////////////////////////////////////////
-
-app.get('/apiadd', (req, res) => {
-	db.collection('prod').find().skip(5).limit(7)
-	.then(sales => res.json(sales))
-	 .catch(err => res.status(404).json({ error: err }));
-});
-
-   app.post('/apiaddtocart', (req, res) => {
-  	var title = req.body.prtitle;
-    var id= req.body.prid;
-  	if (!title || ! id){
-		res.json({'error':'need login'})
-	   }
-  	  db.collection('users').find({"identef": parseInt(id)})
-		  .then(user => res.json(user))
-	 });
-
-	app.post('/apiaddtolist', (req, res) => {
-	  	var title = req.body.prtitle;
-	   var id= req.body.prid;
-		 if (!title || ! id){
-			res.json({'error':'need login'})
-		 }
-		 db.collection('users').find({"identef": parseInt(id)})
-			 .then(user => res.json(user))
-	});
-
-		app.post('/apiPadd', (req, res) => {
-			var title = req.body.title;
-			var color = req.body.color;
-			var weight = req.body.weight;
-			var guarantee = req.body.guarantee;
-			var description = req.body.description;
-			var lastprice = req.body.lastprice;
-			var price = req.body.price;
-			var type = req.body.type;
-			var brand = req.body.brand;
-			var admEmail = req.body.email;
-			var admpass = req.body.password;
-
-
-			if (!title || !color || !brand || !price || !lastprice || !type || !weight || !description || !guarantee ) res.status(400).json({"error": "empty field"});
-			else {
-				db.collection('prod').findOne({ title: title})
-					.then(prod => {
-						if (prod) res.status(200).json({"error": "prod exists"});
-						else {
-
-
-							db.collection('prod').insert({
-								title: title,
-								color: color,
-								weight: weight,
-								guarantee: guarantee,
-								description: description,
-								price: price,
-								lastprice: lastprice,
-								type:type,
-								brand: brand,
-								avatar1: base64String1,
-								avatar2: base64String2,
-								avatar3: base64String3,
-								avatar4: base64String4,
-								href: hrefProd
-							});
-						}
-					})
-					.then(prod => res.json(prod))
-					/*	db.collection('prod').find().skip(1).limit(7)
-						.then(sales => res.json(sales))*/
-						.catch(err => res.status(404).json({ error: err }));
-			}
-		});
-
-	app.get('/api', (req, res) => {
-			db.collection('prod').find()
-				.then(prod => res.json(prod))
-				/*	db.collection('prod').find().skip(1).limit(7)
-					.then(sales => res.json(sales))*/
-					.catch(err => res.status(404).json({ error: err }));
-				})
-
-
-
-
-
-
-///////////////////////JSON////////////////////////////////////////
-////////////////////////////////////////////////////////////////////
-
-
-const apiRouter = express.Router();
-
- app.get('/api/brands/:brand_name', (req, res) => {
-   db.collection('brands').findOne({ 'name': req.params.brand_name }).exec()
-  	 .then(brands => res.json(brands));
-});
-apiRouter.post('/brands', (req, res) => {
-   // @todo get new film data from request and insert it into db
-   res.json({ response: 1 });
-});
-apiRouter.put('/brands/:brand_name', (req, res) => {
-   // @todo get film data from request and update existing film
-   res.json({ response: 1 });
-});
-apiRouter.delete('/brands/:brand_name', (req, res) => {
-    db.collection('brands').remove({ 'name': req.params.brand_name })
-  	 .then(result => {
-  		 if (result.result.n === 0) return Promise.reject('Not found');
-  		 else res.json(result);
-  	 })
-  	 .catch(err => res.status(404).json({ error: err }));
-});
-app.use('/api', apiRouter);
 
 
 
