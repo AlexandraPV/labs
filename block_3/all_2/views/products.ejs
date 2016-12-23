@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>logo</title>
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="img/fav.png">
+<link rel="stylesheet" href="stylesheets/stylePag.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+<script type="text/javascript" src="../stylesheets/js/jquery-1.2.6.js"></script>
+  <link rel="stylesheet" href="stylesheets/style.css" type="text/css" media="all">
+  <!-- Последняя версия компилированного и минимизированного файла CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <!-- Тема (не обязательна) -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+  <!-- ... -->
+  <!-- Последняя версия компилированного и минимизированного файла JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+  <script type="text/javascript" src="../stylesheets/js/jquery-1.2.6.js"></script>
+    <!--<script src="stylesheets/js/jquery.min.js"></script>-->
+
+    <script>
+    $(document).ready(function(){
+      $("#search_button").click(function(){
+
+        $(".bl").remove();
+        $(".pagination").remove();
+        $.ajax({type:"GET", url:"/search",  data: {q:$("#search_input").val()}, success: function(prods){
+
+          for (i in prods){
+            $(".bl-container").append('<div class = "bl"><li><div class="img"><a id="path" href="/products/'+prods[i].href+'"><img alt="" src="data:image/jpg;base64,'+prods[i].avatar1+'"></a></div><div class="info"><a  class="title" href="/products/'+prods[i].href+'">'+ prods[i].name+'</a><p class="size">'+prods[i].founder+' </p><div class="price"><span class="st">Staf:</span><strong>$'+ prods[i].staf+'</strong></div><div class="actions"><a href="/products/'+prods[i].href+'">Details</a></div></div></li></div>');
+                };
+
+        }});
+      });
+    });
+
+    </script>
+
+
+
+
+
+
+<body>
+
+
+
+
+
+
+
+
+<div class="container">
+
+        <header>
+
+          <nav>
+          <ul>
+          <li class="menu">
+            <a href="/">Головна</a></li>
+          <li><a href="/products">Бренди</a></li>
+          <li><a href="/profile"><%=user.local.first_name%></a></li>
+    <!-- <li><button> <img src="img/korzina1.png" href = "index.html"></button></li>-->
+          </ul>
+          </nav>
+
+            <div class="head">
+                <div class="logo">
+                    <a href="#"><img src="img/up.png" title="Logo" alt="Logo" /></a>
+                </div>
+
+                <section id="search">
+
+
+                    <input type="text" id="search_input"  name='q' placeholder= "Search" >
+                    <button type="submit" id="search_button" >search</button>
+
+                    <ul id="social">
+                      <li><a href="https://www.facebook.com" title="facebook" rel="external nofollow"><img alt="" src="img/facebook.png"></a></li>
+                      <li><a href="https://twitter.com" title="twitter" rel="external nofollow"><img alt="" src="img/twitter.png"></a></li>
+                      <li><a href="https://vk.com/" title="vk" rel="external nofollow"><img alt="" src="img/vk.png"></a></li>
+                      <li><a href="https://ok.ru" title="odnoklassniki" rel="external nofollow"><img alt="" src="img/odnoklassniki.png"></a></li>
+                      <li><a href="https://www.youtube.com" title="youtube" rel="external nofollow"><img alt="" src="img/youtube.png"></a></li>
+                  </ul>
+                </section>
+            </div>
+
+        </header>
+
+
+
+
+        <div id="main">
+            <section id="content">
+                <div id="columL">
+                     <h3>Brands</h3>
+                    <ul>
+                      <div class="bl-container">
+                      <% prods.filter(x => x.name).forEach( prod => { %>
+<div class="bl">
+                        <li>
+                          <% if(user.local.role =="admin") { %>
+                            <div class="info">
+                          <div class="actions">
+                          <form action = "/deleteprod" method="post">
+                             <input type="text" hidden="true" name="prtitle" value="<%= prod.name %>">
+                             <input type="text" hidden="true" name="prid" value="<%= user.identef%>">
+                            <a value="<%= prod.name %>" href="#" class="btn btn-primary">X</a>
+                            <div id="myModal" class="modal fade">
+                              <div class="modal-dialog">
+                                <div class="modal-content">
+                                  <!-- Заголовок модального окна -->
+                                  <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h4 class="modal-title">Видалення елемента</h4>
+                                  </div>
+                                  <!-- Основное содержимое модального окна -->
+                                  <div class="modal-body">
+                                    Ви впевнені, що хочете видалити документ?
+                                  </div>
+                                  <!-- Футер модального окна -->
+                                  <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                   <input class="btn btn-default" type="submit" name="submit" value="Delete">
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                             </form>
+                          </div>
+                        </div>
+
+                              <% }; %>
+                            <div class="img"><a id="path" href="/products/<%=prod.href%>"><img alt="" src='data:image/jpg;base64,<%= prod.avatar1 %>'></a></div>
+                            <div class="info">
+                                <a  class="title" href="/products/<%=prod.href%>"><%= prod.name %></a>
+
+                              <p class="size"> <%= prod.founder %> </p>
+                                <div class="price">
+                                    <span class="st">Staf:</span><strong>$<%= prod.staf %></strong>
+                                </div>
+                                <div class="actions">
+
+                                    <a href="/products/<%=prod.href%>">Details</a>
+
+                                  <!--  <a href="#">Add to cart</a>-->
+                                </div>
+                            </div>
+                        </li>
+  </div>
+                        <% }); %>
+  </div>
+                    </ul>
+                </div>
+                <div id="columR">
+                    <h3>Some interesting for you</h3>
+                    <ul>
+                           <% sales.filter(x => x.name).forEach( sale => { %>
+
+                        <li>
+                            <div class="img"><a href="/products/<%=sale.href%>"><img alt="" src='data:image/jpg;base64,<%= sale.avatar1 %>'></a></div>
+                            <div class="info">
+                                <a class="title" href="/products/<%=sale.href%>"><%= sale.name %></a>
+                                <div class="price">
+                                    <span class="special"><%= sale.founder %></span>
+                                </div>
+                            </div>
+                        </li>
+                        <% }); %>
+
+
+                    </ul>
+                </div>
+            </section>
+            <section class="pagination">
+                    <ul>
+                          <% for (var i = 0; i < (Math.floor(count/9)+1); i++) {  %>
+                        <li><a href="/propag<%=i%>" title="Страница 1"><%=i+1%></a></li>
+                        <%}%>
+
+                    </ul>
+            </section>
+        </div>
+
+
+    <footer>
+
+
+      <!-- HTML-код модального окна-->
+
+      <script>
+      $(document).ready(function(){
+       $(".delete").click(function(){
+       btn = $(this);
+
+       $.ajax({type: "delete", url:"/deleteprodA" + '?prtitle=' + btn.attr("value"), success: function(result){
+       // alert(result);
+
+       if (result.error === 'ERROR'){
+       alert('error');}
+       else
+       {$("#"+btn.attr("value")).remove();}
+       }});
+       });
+       });
+      </script>
+      <!-- Скрипт, привязывающий событие click, открывающее модальное окно, к элементам, имеющим класс .btn -->
+      <script>
+      $(document).ready(function(){
+        //при нажатию на любую кнопку, имеющую класс .btn
+        $(".btn").click(function() {
+          //открыть модальное окно с id="myModal"
+          $("#myModal").modal('show');
+        });
+      });
+      </script>
+             Copyright © 2016 Aleksandra Pyvovarchuk
+
+    </footer>
+
+</div>
+
+</body></html>

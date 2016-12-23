@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>logo</title>
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="img/fav.png">
+
+
+<link rel="stylesheet" href="../stylesheets/styleprod.css" type="text/css" media="all">
+
+<body>
+
+<div class="container">
+
+        <header>
+
+          <nav>
+          <ul>
+          <li class="menu">
+            <a href="/">Головна</a></li>
+          <li><a href="/products">Бренди</a></li>
+          <li><a href="/profile"><%=user.local.first_name%></a></li>
+           <!-- <li><button> <img src="img/korzina1.png" href = "index.html"></button></li>-->
+          </ul>
+          </nav>
+
+            <div class="head">
+                <div class="logo">
+                    <a href="#"><img src="../stylesheets/img/up.png" title="Logo" alt="Logo" /></a>
+                </div>
+
+                <section id="search">
+                  <form action="/search"  method="get" enctype="form-data">
+
+                      <input type="text"  name='q' placeholder= "Search" >
+                      <input type="submit" value="search">
+                  </form>
+
+                    <ul id="social">
+                      <li><a href="https://www.facebook.com" title="facebook" rel="external nofollow"><img alt="" src="../stylesheets/img/facebook.png"></a></li>
+                      <li><a href="https://twitter.com" title="twitter" rel="external nofollow"><img alt="" src="../stylesheets/img/twitter.png"></a></li>
+                      <li><a href="https://vk.com/" title="vk" rel="external nofollow"><img alt="" src="../stylesheets/img/vk.png"></a></li>
+                      <li><a href="https://ok.ru" title="odnoklassniki" rel="external nofollow"><img alt="" src="../stylesheets/img/odnoklassniki.png"></a></li>
+                      <li><a href="https://www.youtube.com" title="youtube" rel="external nofollow"><img alt="" src="../stylesheets/img/youtube.png"></a></li>
+                  </ul>
+                </section>
+            </div>
+
+
+        </header>
+
+
+<script type="text/javascript">
+function changeImg(lin){
+  var img = document.getElementById("myImg");
+  img.src=lin;
+}
+</script>
+
+        <div id="main">
+            <section id="content">
+                <div id="columL">
+                    <h3><%= prod.name %></h3>
+                 <div class = "left-left">
+                       <div class = "anons">
+                           <section>
+                             <div class = "image">
+                              <a href = "#"> <img id="myImg" src='data:image/jpg;base64,<%= prod.avatar1 %>' height="200" width="200" alt = "Apple"></a>
+                             </div>
+                           </section>
+                       </div>
+
+                  </div>
+                <div class="columMed">
+<table>
+
+<tbody>
+  <tr>
+    <td><strong>Name</strong></td>
+
+    <td><%= prod.name%></td>
+  </tr>
+  <tr>
+    <td><strong>Founder</strong></td>
+
+    <td><%= prod.founder%></td>
+  </tr>
+
+  <tr>
+    <td><strong>Date</strong></td>
+
+    <td><%= prod.date %></td>
+  </tr>
+  <tr>
+    <td><strong>Staf</strong></td>
+
+    <td><%= prod.staf %></td>
+  </tr>
+  <tr>
+    <td><strong>Cost </strong></td>
+
+    <td><%= prod.cost %></td>
+  </tr>
+
+</tbody>
+</table>
+<ul>
+    <li>
+
+      <% if(user.local.role =="admin") { %>
+        <div class="info">
+      <div class="actions">
+      <form action = "/deleteprod" method="post">
+         <input type="text" hidden="true" name="prtitle" value="<%= prod.name %>">
+         <input type="text" hidden="true" name="prid" value="<%= user.identef%>">
+         <input class = "a" type="submit" name="submit" value="Delete">
+         </form >
+      </div>
+    </div>
+          <% }; %>
+
+    </li>
+  </ul>
+                </div>
+
+                </div>
+                <div id="columR">
+                    <h3>Top sells</h3>
+                    <ul>
+                      <% sales.filter(x => x.name).forEach( sale => { %>
+
+                   <li>
+                       <div class="img"><a href="/products/<%=sale.href%>"><img alt="" src='data:image/jpg;base64,<%= sale.avatar1 %>'></a></div>
+                       <div class="info">
+                           <a class="title" href="/products/<%=sale.href%>"><%= sale.name %></a>
+                           <div class="price">
+                               <span class="special"><%= sale.founder %></span>
+                           </div>
+                       </div>
+                   </li>
+                   <% }); %>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+
+    <footer>
+
+             Copyright © 2016 Aleksandra Pyvovarchuk
+
+    </footer>
+
+</div>
+
+</body></html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>logo</title>
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="img/fav.png">
+ <script type="text/javascript" src="stylesheets/js/jquery.min.js"></script>
+
+  <link rel="stylesheet" href="stylesheets/regstyle.css" type="text/css" media="all">
+<script src="stylesheets/js/required_fields.js"></script>
+<div class="container">
+
+        <header>
+
+          <nav>
+          <ul>
+          <li class="menu">
+            <a href="/">Головна</a></li>
+          <li><a href="/products">Бренди</a></li>
+
+          <li><a href="/profile">Акаунт</a></li>
+
+           <!-- <li><button> <img src="img/korzina1.png" href = "index.html"></button></li>-->
+          </ul>
+          </nav>
+
+            <div class="head">
+                <div class="logo">
+                    <a href="#"><img src="img/up.png" title="Logo" alt="Logo" /></a>
+                </div>
+
+                <section id="search">
+                  <form action="/search"  method="get" enctype="form-data">
+
+                      <input type="text"  name='q' placeholder= "Search" >
+                      <input type="submit" value="search">
+                  </form>
+
+                    <ul id="social">
+                      <li><a href="https://www.facebook.com" title="facebook" rel="external nofollow"><img alt="" src="img/facebook.png"></a></li>
+                      <li><a href="https://twitter.com" title="twitter" rel="external nofollow"><img alt="" src="img/twitter.png"></a></li>
+                      <li><a href="https://vk.com/" title="vk" rel="external nofollow"><img alt="" src="img/vk.png"></a></li>
+                      <li><a href="https://ok.ru" title="odnoklassniki" rel="external nofollow"><img alt="" src="img/odnoklassniki.png"></a></li>
+                      <li><a href="https://www.youtube.com" title="youtube" rel="external nofollow"><img alt="" src="img/youtube.png"></a></li>
+                  </ul>
+                </section>
+            </div>
+
+
+
+        </header>
+
+
+
+        <div id="main">
+            <section id="content">
+                <div id="columL">
+                     <h3>Registration</h3>
+                     <form action='/signup' id = "form" name="form" method='POST' onChange="check();" enctype="multipart/form-data" class='reg-form rf '>
+
+               	<div class='form-row'>
+                  			<label for='form_fname'>First Name: </label>
+                      		<input type='text' class="rfield test" onChange="validate_formn();" id='form_fname' name='first_name'>
+                           <span id="namef" style="float:right; margin-right:10px"></span>
+                    		</div>
+
+                    		<div class='form-row'>
+                      		<label for='form_sname'>Second Name: </label>
+                      		<input type='text' class="rfield test" onChange="validate_forms();" id='form_sname' name='second_name'>
+                           <span id="snamef" style="float:right; margin-right:10px"></span>
+                  		</div>
+
+                     <div class='form-row'>
+                       <label for='form_login'>Login: </label>
+                       <input type='text' class="rfield test" onChange="validate_forml();" id='form_login' name='login'>
+                         <span id="log" style="float:right; margin-right:10px"></span>
+                   </div>
+
+
+                  		<div class='form-row'>
+                  			<label for='form_email'>Email: </label>
+                  			<input type='email' class="rfield test" onChange="validate_forme();" id='form_email' name='email'>
+                         <span id="em" style="float:right; margin-right:10px"></span>
+                  		</div>
+
+                     <div class='form-row'>
+                  			<label for='password'>Password: </label>
+                  			<input type='password' class="rfield test12" onChange="validate_formp1();"  id='password' name='password'>
+                         <span id="passwordF" style="float:right; margin-right:10px"></span>
+                  		</div>
+
+                  <div class='form-row'>
+                  			<label for='password2'>Password repeat: </label>
+                  			<input type='password' class="rfield test123" onChange="validate_formp2();" id='password2' name='password2'>
+                         <span id="passwordF2" style="float:right; margin-right:10px"></span>
+                  		</div>
+
+
+
+                		<div class='form-row'>
+                  			<label for='form_phone'>Phone: </label>
+                  			<input type='text' class="rfield test" onChange="validate_formph();"  id='form_phone' name='phone'>
+                         <span id="ph" pattern="\\+?[0-9]+" style="float:right; margin-right:10px"></span>
+                  		</div>
+
+                  		<div class='form-row'>
+                  			<label for='form_about'>About myself: </label>
+                  			<textarea id='form_about' class="rfield test" onChange="validate_formab();"  name='about'></textarea>
+                         <span id="ab" style="float:right; margin-right:10px"></span>
+                  		</div>
+
+                     <p>Add photo</p>
+                        <input type='file' name='avatar' />
+
+                  		<div class="form-row">
+                  			<input type="submit" name ="but" id="but" disabled="true" style="background:#9D9F9A;" class="btn_submit " value='Go'>
+                  		</div>
+
+                  	</form>
+
+                </div>
+                <div id="columR">
+                    <h3>Top sells</h3>
+                    <ul>
+                      <% sales.filter(x => x.name).forEach( sale => { %>
+                   <li>
+                       <div class="img"><a href="/products/<%=sale.href%>"><img alt="" src='data:image/jpg;base64,<%= sale.avatar1 %>'></a></div>
+                       <div class="info">
+                           <a class="title" href="/products/<%=sale.href%>"><%= sale.name %></a>
+                           <div class="price">
+
+                               <span class="special"><%= sale.founder %></span>
+                           </div>
+                       </div>
+                   </li>
+                   <% }); %>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+
+    <footer>
+
+             Copyright © 2016 Aleksandra Pyvovarchuk
+
+    </footer>
+
+</div>
+
+</body></html>

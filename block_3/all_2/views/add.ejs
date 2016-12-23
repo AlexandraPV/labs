@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>logo</title>
+  <meta charset="utf-8">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <link rel="shortcut icon" type="image/x-icon" href="img/fav.png">
+
+
+  <link rel="stylesheet" href="stylesheets/addstyle.css" type="text/css" media="all">
+
+<div class="container">
+
+        <header>
+
+          <nav>
+          <ul>
+          <li class="menu">
+            <a href="/">Головна</a></li>
+          <li><a href="/products">Бренди</a></li>
+          <li><a href="/profile">Акаунт</a></li>
+
+          <!-- <li><button> <img src="img/korzina1.png" href = "index.html"></button></li>-->
+          </ul>
+          </nav>
+
+            <div class="head">
+                <div class="logo">
+                    <a href="#"><img src="img/up.png" title="Logo" alt="Logo" /></a>
+                </div>
+
+                <section id="search">
+                  <form action="/search"  method="get" enctype="form-data">
+
+                      <input type="text"  name='q' placeholder= "Search" >
+                      <input type="submit" value="search">
+                  </form>
+
+                    <ul id="social">
+                        <li><a href="https://www.facebook.com" title="facebook" rel="external nofollow"><img alt="" src="img/facebook.png"></a></li>
+                        <li><a href="https://twitter.com" title="twitter" rel="external nofollow"><img alt="" src="img/twitter.png"></a></li>
+                        <li><a href="https://vk.com/" title="vk" rel="external nofollow"><img alt="" src="img/vk.png"></a></li>
+                        <li><a href="https://ok.ru" title="odnoklassniki" rel="external nofollow"><img alt="" src="img/odnoklassniki.png"></a></li>
+                        <li><a href="https://www.youtube.com" title="youtube" rel="external nofollow"><img alt="" src="img/youtube.png"></a></li>
+                    </ul>
+                </section>
+            </div>
+
+
+        </header>
+
+
+
+        <div id="main">
+            <section id="content">
+                <div id="columL">
+                     <h3>Add brand</h3>
+          <form action='/add' method='POST' class='add-form' enctype="multipart/form-data">
+
+   		<div class='form-row'>
+   			<label for='title'>Name: </label>
+       		<input maxlength="30" type='text' id='name' name='name'>
+     		</div>
+
+        <div class='form-row'>
+          <label for='brand'>Founder: </label>
+          <input maxlength="100" type='text' id='founder' name='founder'>
+        </div>
+
+     		<div class='form-row'>
+       		<label for='color'>Date: </label>
+       		<input maxlength="20" type='date' id='date' name='date'>
+   		</div>
+
+   		<div class='form-row'>
+   			<label for='weight'>Staf: </label>
+   			<input maxlength="20" type='text' id='staf' name='staf'>
+   		</div>
+
+   		<div class='form-row'>
+   			<label for='guarantee'>Cost: </label>
+   			<input maxlength="20" type='text' id='cost' name='cost'>
+   		</div>
+
+      <p>Add photo</p>
+         <input type='file' name='avatar1' />
+
+   		<div class="form-row">
+   			<input type="submit" value='Add'>
+   		</div>
+
+   	</form>
+                </div>
+                <div id="columR">
+                    <h3>Top sells</h3>
+                    <ul>
+                           <% sales.filter(x => x.name).forEach( sale => { %>
+                        <li>
+                            <div class="img"><a href="/products/<%=sale.href%>"><img alt="" src='data:image/jpg;base64,<%= sale.avatar1 %>'></a></div>
+                            <div class="info">
+                                <a class="title" href="/products/<%=sale.href%>"><%= sale.name %></a>
+                                <div class="price">
+
+                                    <span class="special">$<%= sale.cost %></span>
+                                </div>
+                            </div>
+                        </li>
+                        <% }); %>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+
+    <footer>
+
+             Copyright © 2016 Aleksandra Pyvovarchuk
+
+    </footer>
+
+</div>
+
+</body></html>
